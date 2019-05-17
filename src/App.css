@@ -1,0 +1,14 @@
+.App {
+  font-family: Circular, Helvetica, Arial, sans-serif;
+  text-align: left;
+}
+
+.App-header {
+  background-color: #fff;
+  padding: 20px;
+  color: white;
+}
+
+.App-logo {
+  height: 40px;
+}
