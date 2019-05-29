@@ -9,6 +9,9 @@
 # production
 /build
 
+# api
+/rest_api
+
 # misc
 .DS_Store
 .env
