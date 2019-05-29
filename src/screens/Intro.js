@@ -1,5 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import Login from '../Spotify/Login.js';
+import './Style.css';
+import Header from '../layout/Header.js';
+import Footer from '../layout/Footer.js';
 
 export default class IntroScreen extends Component {
   buttonClick(e) {
@@ -10,10 +13,16 @@ export default class IntroScreen extends Component {
   render() {
     return (
       <Fragment>
-        <p>This app arranges your playlists in an order, wich is based on your impression of each track in it.</p>
-        
-        <button className="btn btn-md btn-violet" onClick={this.buttonClick}>Log in with Spotify</button>
-        &nbsp;
+        <Header/>
+        <div className="style" >
+          <p>This app helps you to keep your Playlists always 100% clean.</p> 
+            <p>It recognized if you dont like a track anymore and suggest you to remove it from your playlist.</p>
+            <p>The more disliked tracks a playlist has in it, the worst is its match.</p>
+            <br/>
+          <h3 onClick={this.buttonClick}>Log in with Spotify</h3>
+          &nbsp;
+        </div>
+        <Footer/>
       </Fragment>
     );
   };

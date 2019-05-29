@@ -1,0 +1,49 @@
+.style {
+    font-family: "Courier New", Courier;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.button {
+    position: absolute;
+    top: 50%;
+}
+h1 {
+    margin-top: 50px;
+    margin-bottom: 40px;
+}
+h3 {
+    margin-top: 10px;
+    margin-bottom: 0px;
+}
+h4{
+    margin-top: 5px;
+    margin-bottom: 30px;
+}
+.title{
+    margin-top: 35px;
+    margin-bottom: 20px;
+}
+  body {
+    background-attachment: fixed;
+    background-image: url('http://tecnologiasdocumentales.com/sites/default/files/almacenamiento-seguridad.gif');
+    background-color: hsla(0,0%,100%,0.9);
+    background-blend-mode: overlay;
+    background-repeat: no-repeat;
+    background-position: bottom ;
+    background-size: 100%;
+}
+.pimg {
+    width: 50%;
+    height: auto;
+    max-width: 300px;
+  }
+  .timg {
+    width: 20%;
+    height: auto;
+    max-width: 120px;
+  }
+  
+    /* https://i.pinimg.com/originals/61/9b/1a/619b1ab7ac25a95f087e3df19637385c.gif */
+
+
