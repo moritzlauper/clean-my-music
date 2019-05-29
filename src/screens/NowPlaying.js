@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 
 export default class NowPlaying extends Component {
   render() {
@@ -23,16 +23,13 @@ export default class NowPlaying extends Component {
     } = playerState.track_window.current_track;
 
     return (
-      <div className="panel panel-default">
-        <div className="panel-heading">Now Playing</div>
-        <div className="panel-body">
+      <Fragment>
           <img src={album_image} alt={track_name} />
 
           <h4><a href={track_uri}>{track_name}</a> by <a href={artist_uri}>{artist_name}</a></h4>
           <h4><a href={album_uri}>{album_name}</a></h4>
           <h4>ID: {id} | Position: {position_ms} | Duration: {duration_ms}</h4>
-        </div>
-      </div>
+        </Fragment>
     );
-  }
+}
 }

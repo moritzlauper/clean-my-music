@@ -1,11 +1,9 @@
 import React from 'react';
-import logo from './../logo.svg';
-
+import '../screens/Style.css'
 export default () => {
   return (
-    <header className="App-header">
-      <img src={logo} className="App-logo" alt="logo" />
-      <span className="visually-hidden">Spotify for Developers</span>
+    <header className="style">
+      <h1 className="title">CLEAN MY MUSIC</h1>
     </header>
   );
 };
