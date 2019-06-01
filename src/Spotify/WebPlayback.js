@@ -1,4 +1,9 @@
 import React, { Component, Fragment } from 'react';
+import _ from 'lodash';
+
+import Spotify from 'spotify-web-api-js';
+
+const spotifyApi = new Spotify();
 
 export default class WebPlayback extends Component {
   deviceSelectedInterval = null
@@ -7,9 +12,11 @@ export default class WebPlayback extends Component {
 
   state = {
     playerReady: false,
-    playerSelected: false
+    playerSelected: false,
+    skipped: [],
+    userId: null
   }
-    
+
   async handleState(state) {
     if (state) {
       this.props.onPlayerStateChange(state);
@@ -75,11 +82,11 @@ export default class WebPlayback extends Component {
         }
       }
     });
-    
+
     this.webPlaybackInstance.on("initialization_error", e => {
       this.props.onPlayerError(e.message);
     });
-    
+
     this.webPlaybackInstance.on("authentication_error", e => {
       this.props.onPlayerError(e.message);
     });
@@ -92,12 +99,32 @@ export default class WebPlayback extends Component {
       this.props.onPlayerError(e.message);
     });
 
-    this.webPlaybackInstance.on("player_state_changed", async state => {
-      await this.handleState(state);
+    this.webPlaybackInstance.on("player_state_changed", state => {
+      if (this.state.skipped.length < 2) {
+        this.state.skipped.push(state);
+      } else {
+        if (state.position === 0 && this.state.skipped[1].position !== 0) {
+          if (!_.isEqual(this.state.skipped[1].track_window.current_track,
+            state.track_window.current_track)) {
+            fetch("http://localhost:5000/"
+              + this.state.skipped[1].position + "/"
+              + this.state.skipped[1].duration + "/"
+              + this.state.skipped[0].track_window.current_track.id + "/"
+              + this.state.userId);
+          }
+
+        }
+      }
+      this.state.skipped.shift();
+      this.state.skipped.push(state);
     });
 
     this.webPlaybackInstance.on("ready", data => {
       this.props.onPlayerWaitingForDevice(data);
+      spotifyApi.getMe()
+        .then((me) => {
+          this.setState({ userId: me.id });
+        });
     });
 
     if (this.props.playerAutoConnect) {
@@ -116,13 +143,13 @@ export default class WebPlayback extends Component {
   async componentWillMount() {
     // Notify the player is loading
     this.props.onPlayerLoading();
-    
+
     // Wait for Spotify to load player
     await this.waitForSpotify();
-    
+
     // Setup the instance and the callbacks
     await this.setupWebPlaybackEvents();
-    
+
     // Wait for device to be ready
     let device_data = await this.setupWaitingForDevice();
     this.props.onPlayerWaitingForDevice(device_data);
