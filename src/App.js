@@ -56,7 +56,7 @@ export default class App extends Component {
 
     let webPlaybackSdkProps = {
       playerName: "CleanMyMusic",
-      playerInitialVolume: 1.0,
+      playerInitialVolume: 0.5,
       playerRefreshRateMs: 10,
       playerAutoConnect: true,
       onPlayerRequestAccessToken: (() => userAccessToken),

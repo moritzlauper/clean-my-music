@@ -78,6 +78,11 @@ export default class WebPlayback extends Component {
       getOAuthToken: async callback => {
         if (typeof this.props.onPlayerRequestAccessToken !== "undefined") {
           let userAccessToken = await this.props.onPlayerRequestAccessToken();
+          spotifyApi.setAccessToken(userAccessToken);
+          spotifyApi.getMe()
+            .then((me) => {
+              this.setState({ userId: me.id });
+            });
           callback(userAccessToken);
         }
       }
@@ -121,10 +126,6 @@ export default class WebPlayback extends Component {
 
     this.webPlaybackInstance.on("ready", data => {
       this.props.onPlayerWaitingForDevice(data);
-      spotifyApi.getMe()
-        .then((me) => {
-          this.setState({ userId: me.id });
-        });
     });
 
     if (this.props.playerAutoConnect) {

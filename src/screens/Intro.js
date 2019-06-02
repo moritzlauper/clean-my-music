@@ -16,8 +16,8 @@ export default class IntroScreen extends Component {
         <Header/>
         <div className="style" >
           <p>This app helps you to keep your playlists always 100% clean.</p> 
-            <p>It recognized if you don't like a track anymore and suggest you to remove it from your playlist.</p>
-            <p>The more disliked tracks a playlist has in it, the worse is its match.</p>
+            <p>It recognizes when you don't like a track anymore and suggests you to remove it from your playlist.</p>
+            <p>The more disliked tracks a playlist contains, the worse is its match.</p>
             <br/>
           <h3 onClick={this.buttonClick}>Log in with Spotify</h3>
           &nbsp;
