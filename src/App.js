@@ -11,6 +11,7 @@ import HomeScreen from './screens/Home.js';
 window.onSpotifyWebPlaybackSDKReady = () => { };
 
 export default class App extends Component {
+
   state = {
     // User's session credentials
     userDeviceId: null,
@@ -19,7 +20,8 @@ export default class App extends Component {
     // Player state
     playerLoaded: false,
     playerSelected: false,
-    playerState: null
+    playerState: null,
+
   }
 
   componentWillMount() {
@@ -46,7 +48,6 @@ export default class App extends Component {
 
     console.error("The user access token has expired.");
   }
-
 
   render() {
     let {

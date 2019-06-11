@@ -1,9 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import _ from 'lodash';
 
-import Spotify from 'spotify-web-api-js';
-
-const spotifyApi = new Spotify();
+import SpotifyUtils from './Utils.js';
+const utils = new SpotifyUtils();
 
 export default class WebPlayback extends Component {
   deviceSelectedInterval = null
@@ -78,10 +77,9 @@ export default class WebPlayback extends Component {
       getOAuthToken: async callback => {
         if (typeof this.props.onPlayerRequestAccessToken !== "undefined") {
           let userAccessToken = await this.props.onPlayerRequestAccessToken();
-          spotifyApi.setAccessToken(userAccessToken);
-          spotifyApi.getMe()
-            .then((me) => {
-              this.setState({ userId: me.id });
+          utils.getUserId(userAccessToken)
+            .then((id) => {
+              this.setState({ userId: id });
             });
           callback(userAccessToken);
         }
@@ -111,11 +109,11 @@ export default class WebPlayback extends Component {
         if (state.position === 0 && this.state.skipped[1].position !== 0) {
           if (!_.isEqual(this.state.skipped[1].track_window.current_track,
             state.track_window.current_track)) {
-            fetch("http://localhost:5000/"
-              + this.state.skipped[1].position + "/"
-              + this.state.skipped[1].duration + "/"
-              + this.state.skipped[0].track_window.current_track.id + "/"
-              + this.state.userId);
+              utils.rateTrack(
+                this.state.skipped[1].position, 
+                this.state.skipped[1].duration, 
+                this.state.skipped[0].track_window.current_track.id, 
+                this.state.userId);
           }
 
         }

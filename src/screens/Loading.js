@@ -3,10 +3,12 @@ import './Style.css';
 
 export default class HomeScreen extends Component {
 
-    render(){
-        return(
+    render() {
+        return (
             <Fragment>
-                <h1 onClick={this.props.isLoading}>Loading...</h1>
+                <div className="style">
+                    <h1>Loading...</h1>
+                </div>
             </Fragment>
         );
     }
