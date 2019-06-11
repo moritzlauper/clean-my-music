@@ -1,7 +1,7 @@
 import Spotify from 'spotify-web-api-js';
 
 const spotifyApi = new Spotify();
-const apiUri = 'http://localhost:5000/';
+const apiUri = 'https://cleanmymusic.herokuapp.com/';
 
 let user_name = null;
 
