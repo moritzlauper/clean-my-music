@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import WebPlayback from './Spotify/WebPlayback.js';
-
 import './App.css';
 
 import LoginCallback from './Spotify/LoginCallback.js';
@@ -11,6 +10,7 @@ import HomeScreen from './screens/Home.js';
 window.onSpotifyWebPlaybackSDKReady = () => { };
 
 export default class App extends Component {
+
   state = {
     // User's session credentials
     userDeviceId: null,
@@ -19,7 +19,7 @@ export default class App extends Component {
     // Player state
     playerLoaded: false,
     playerSelected: false,
-    playerState: null
+    playerState: null,
   }
 
   componentWillMount() {
@@ -47,7 +47,6 @@ export default class App extends Component {
     console.error("The user access token has expired.");
   }
 
-
   render() {
     let {
       userAccessToken,
@@ -56,7 +55,7 @@ export default class App extends Component {
 
     let webPlaybackSdkProps = {
       playerName: "CleanMyMusic",
-      playerInitialVolume: 1.0,
+      playerInitialVolume: 0.5,
       playerRefreshRateMs: 10,
       playerAutoConnect: true,
       onPlayerRequestAccessToken: (() => userAccessToken),
