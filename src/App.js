@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import WebPlayback from './Spotify/WebPlayback.js';
-
 import './App.css';
 
 import LoginCallback from './Spotify/LoginCallback.js';
@@ -21,7 +20,6 @@ export default class App extends Component {
     playerLoaded: false,
     playerSelected: false,
     playerState: null,
-
   }
 
   componentWillMount() {

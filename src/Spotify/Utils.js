@@ -11,11 +11,17 @@ export default class SpotifyUtils {
         spotifyApi.setAccessToken(token);
         return spotifyApi.getMe().then((response) => {
             return response.id;
-        }); 
+        });
     }
 
     rateTrack(position, duration, trackId, userId) {
         fetch(apiUri + position + "/" + duration + "/" + trackId + "/" + userId);
+    }
+
+    deleteTrack(playlistId, trackId){
+            let uri = [];
+            uri.push("spotify:track:"+trackId);
+            spotifyApi.removeTracksFromPlaylist(playlistId, uri);
     }
 
     async getData(token, reactCallback) {
@@ -33,21 +39,33 @@ export default class SpotifyUtils {
 
     async getSpotifyData(doneCallback, reactCallback) {
         return spotifyApi.getUserPlaylists().then(playlists => {
-            this.recursiveCall(playlists.items, [], doneCallback, reactCallback);
-        });
+            //users and followed playlists
+            //this.recursiveCall(playlists.items, [], doneCallback, reactCallback)
+
+            //Only users playlists
+            
+            let usersPlaylists = playlists.items.filter(playlist => {
+                return playlist.owner.display_name === user_name;
+            });
+            if (typeof usersPlaylists !== 'undefined'){
+            this.recursiveCall(usersPlaylists, [], doneCallback, reactCallback);
+            }else{ //TODO pass a Tutorial for User
+                doneCallback([], reactCallback);
+            }
+        
+        }).catch(err => { console.log(err);
+            doneCallback([], reactCallback); });
     }
 
     async recursiveCall(playlists, userPlaylists, doneCallback, reactCallback) {
         let playlistTracks = [];
         let playlist = playlists.pop();
         spotifyApi.getPlaylistTracks(playlist.id, { fields: "items(track(name,id,album(images())))" }).then(tracks => {
-            if(playlist.owner.display_name === user_name){
             tracks.items.forEach((track) => {
                 if(track.track.album.images[1] !== undefined){
                     playlistTracks.push({id: track.track.id, name: track.track.name, img: track.track.album.images[1].url});
                 }
             });
-            }
             userPlaylists.push({name: playlist.name, id: playlist.id, img: playlist.images[0].url, tracks: playlistTracks});
             if (playlists.length > 0) {
                 this.recursiveCall(playlists, userPlaylists, doneCallback, reactCallback);
@@ -66,7 +84,7 @@ export default class SpotifyUtils {
                     return track.id === score.id_track;
                 });
                 if(current !== undefined){
-                    playlistTracks.push({current, score : score.score});
+                    playlistTracks.push({current, score : Math.round((score.score) * 100) / 100});
                 }
             });
                 if(playlistTracks.length > 0){

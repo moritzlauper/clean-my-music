@@ -1,63 +1,55 @@
 import React, { Component, Fragment } from 'react';
+
 import './Style.css';
 import Playlists from './Playlists.js'
 import Tracks from './PlaylistTracks.js';
 import Loading from './Loading.js';
-import SpotifyUtils from '../Spotify/Utils.js';
-
-const utils = new SpotifyUtils();
 
 export default class HomeScreen extends Component {
   constructor(props) {
     super(props)
 
     this.handler = this.handler.bind(this);
+    this.loading = this.loading.bind(this);
   }
   state = {
-    selectedPlaylist: {
-      tracks: [],
-      name: null
-    },
+    selectedPlaylist: [],
+    isSelected: false,
     loaded: false,
     data: []
   }
 
-  handler(tracks, name) {
+  handler(playlist, bool) {
     this.setState({
-      selectedPlaylist: {
-        tracks: tracks,
-        name: name,
-      }
+      selectedPlaylist: playlist,
+      isSelected: bool
     });
   } 
 
-  load() {
-    if (!this.state.loaded) {
-
-      utils.getData(this.props.token, (list) => {
-        this.setState({loaded: true, data: list});
-      });
-    }
+  loading(loaded, data){
+    this.setState({
+      loaded: loaded,
+      data : data
+    })
   }
 
   render() {
     return (
       <Fragment>
-        {!this.state.loaded && <Loading/>}
-        {!this.state.loaded && this.load()}
+        {!this.state.loaded && <Loading token={this.props.token} loading={this.loading}/>}
 
-        {this.state.selectedPlaylist.name === null &&
+        {!this.state.isSelected &&
           this.state.loaded &&
           <Playlists
             handler={this.handler}
+            loading={this.loading}
             data={this.state.data}
           />}
 
-        {this.state.selectedPlaylist.name !== null &&
+        {this.state.isSelected &&
           this.state.loaded &&
           <Tracks
-            playlistTracks={this.state.selectedPlaylist.tracks}
-            playlistName={this.state.selectedPlaylist.name}
+            playlist={this.state.selectedPlaylist}
             handler={this.handler}
           />}
       </Fragment>

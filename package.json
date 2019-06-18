@@ -11,14 +11,14 @@
     "react-router-dom": "^5.0.0",
     "spotify-web-api-js": "^1.2.0"
   },
-  "proxy": "https://spotify-web-playback-react.glitch.me",
   "devDependencies": {
+    "http-server": "^0.11.1",
     "react-scripts": "0.9.5"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
+    "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
   "license": "MIT"
