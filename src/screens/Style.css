@@ -1,6 +1,7 @@
 .style {
     font-family: "Courier New", Courier;
     text-align: center;
+    font-size: medium;
     margin-bottom: 10px;
 }
 
@@ -11,6 +12,10 @@
 h1 {
     margin-top: 30px;
     margin-bottom: 40px;
+}
+h2 {
+    margin-top: 10px;
+    margin-bottom: 5px;
 }
 h3 {
     margin-top: 10px;
@@ -32,25 +37,43 @@ h4{
     margin-top: 0px;
     margin-bottom: 25px;
 }
-
+.noData {
+    font-family: "Courier New", Courier;
+    text-align: center;
+    font-size: small;
+    margin-bottom: 10px;
+}
+.left-center {
+    display: inline-block; 
+    text-align: left; 
+    font-family: "Courier New", Courier;
+    margin-bottom: 10px;
+}
+.center{
+    text-align: center;
+}
+.background-btn {
+    font-family: "Courier New", Courier;
+    font-size: xx-small;
+    color: rgba(173, 173, 173, 0.507);
+}
   body {
     background-attachment: fixed;
-    background-image: url('http://tecnologiasdocumentales.com/sites/default/files/almacenamiento-seguridad.gif');
-    background-color: hsla(0,0%,100%,0.93);
+    color: rgba(228, 228, 228, 0.911);
     background-blend-mode: overlay;
     background-repeat: no-repeat;
-    background-position: bottom ;
-    background-size: 100%;
-}
+    background-position: center;
+    background-size: auto;
+} 
 .pimg {
-    width: 50%;
+    width: 45%;
     height: auto;
-    max-width: 300px;
+    max-width: 250px;
   }
   .timg {
     width: 20%;
     height: auto;
-    max-width: 120px;
+    max-width: 100px;
   }
 
 

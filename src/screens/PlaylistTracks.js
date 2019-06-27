@@ -28,15 +28,15 @@ export default class PlaylistTracksScreen extends Component {
                 <div className="style">
                     {this.sortTracks().map((item, i) => 
                         <div id={item.current.id} key={i} align="center">
-                            <img className="timg" src={item.current.img} alt="Track"
+                            <img className="timg" src={item.current.img} alt="Track" style={{cursor:'pointer'}}
                             onClick={() => {this.removeTrack(item.current)}}></img>
-                            <h3>{item.current.name}</h3>
+                            <h2>{item.current.name}</h2>
                             <h4>{item.score}% Match</h4>
                         </div>
                     )}
                 </div>
                 <div className="style">
-                    <h1 onClick={() => { this.props.handler([], false) }}>Back</h1>
+                    <h1 style={{cursor:'pointer'}} onClick={() => { this.props.handler([], false) }}>Back</h1>
                 </div>
             </Fragment>
         );
