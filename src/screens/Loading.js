@@ -7,12 +7,21 @@ const utils = new SpotifyUtils();
 
 export default class Loading extends Component {
 
-    loadData(){
+    loadData() {
         utils.getData(this.props.token, (list) => {
-            this.props.loading(true, list);
-          });
+            if (list.length > 0) {
+                if (list[0].type !== "noData") {
+                    this.props.loading(true, list, false);
+                    utils.handleTopPlaylist(this.props.token);
+                } else {
+                    this.props.loading(true, null, true);
+                }
+            } else {
+                this.props.loading(true, null, true);
+            }
+        });
     }
-    
+
     componentDidMount() {
         this.loadData();
     }

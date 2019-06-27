@@ -6,6 +6,7 @@ import LoginCallback from './Spotify/LoginCallback.js';
 
 import IntroScreen from './screens/Intro.js';
 import HomeScreen from './screens/Home.js';
+import {anim} from './AnimatedBackground.js';
 
 window.onSpotifyWebPlaybackSDKReady = () => { };
 
@@ -24,8 +25,7 @@ export default class App extends Component {
 
   componentWillMount() {
     LoginCallback({
-      onSuccessfulAuthorization: this.onSuccessfulAuthorization.bind(this),
-      onAccessTokenExpiration: this.onAccessTokenExpiration.bind(this)
+      onSuccessfulAuthorization: this.onSuccessfulAuthorization.bind(this)
     });
   }
 
@@ -35,16 +35,8 @@ export default class App extends Component {
     });
   }
 
-  onAccessTokenExpiration() {
-    this.setState({
-      userDeviceId: null,
-      userAccessToken: null,
-      playerLoaded: false,
-      playerSelected: false,
-      playerState: null,
-    });
-
-    console.error("The user access token has expired.");
+  componentDidMount(){
+    anim();
   }
 
   render() {
@@ -70,7 +62,7 @@ export default class App extends Component {
       <div className="App" id="content-wrap">
         <main>
           {!userAccessToken &&
-            <IntroScreen />}
+            <IntroScreen onSuccess={this.onSuccessfulAuthorization}/>}
 
           {userAccessToken &&
             <WebPlayback {...webPlaybackSdkProps}>

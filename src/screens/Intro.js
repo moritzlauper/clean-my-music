@@ -15,11 +15,11 @@ export default class IntroScreen extends Component {
       <Fragment>
         <Header/>
         <div className="style" >
-          <p>This app helps you to keep your playlists always 100% clean.</p> 
-            <p>It recognizes when you don't like a track anymore and suggests you to remove it from your playlist.</p>
-            <p>The more disliked tracks a playlist contains, the worse is its match.</p>
+          <p>This app keeps you far away from messy Spotify playlists.</p> 
+          <p>It rates each track you listen to and evaluates how clean your playlists are.</p>
+            <p>The app suggests you the songs which you should remove to have neat playlists.</p>
             <br/>
-          <h3 onClick={this.buttonClick}>Log in with Spotify</h3>
+          <h3 onClick={this.buttonClick} style={{cursor:'pointer'}}>Log in with Spotify</h3>
           &nbsp;
         </div>
         <Footer/>

@@ -13,7 +13,7 @@ export default class WebPlayback extends Component {
     playerReady: false,
     playerSelected: false,
     skipped: [],
-    userId: null
+    userId: null,
   }
 
   async handleState(state) {
@@ -114,6 +114,7 @@ export default class WebPlayback extends Component {
                 this.state.skipped[1].duration, 
                 this.state.skipped[0].track_window.current_track.id, 
                 this.state.userId);
+
           }
 
         }
@@ -123,6 +124,7 @@ export default class WebPlayback extends Component {
     });
 
     this.webPlaybackInstance.on("ready", data => {
+      utils.setPlayer(data.device_id);
       this.props.onPlayerWaitingForDevice(data);
     });
 
