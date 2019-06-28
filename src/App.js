@@ -6,7 +6,9 @@ import LoginCallback from './Spotify/LoginCallback.js';
 
 import IntroScreen from './screens/Intro.js';
 import HomeScreen from './screens/Home.js';
-import {anim} from './AnimatedBackground.js';
+import { anim } from './AnimatedBackground.js';
+
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 window.onSpotifyWebPlaybackSDKReady = () => { };
 
@@ -35,7 +37,7 @@ export default class App extends Component {
     });
   }
 
-  componentDidMount(){
+  componentDidMount() {
     anim();
   }
 
@@ -59,21 +61,26 @@ export default class App extends Component {
     };
 
     return (
-      <div className="App" id="content-wrap">
-        <main>
-          {!userAccessToken &&
-            <IntroScreen onSuccess={this.onSuccessfulAuthorization}/>}
+      <Router>
+        <div className="App" id="content-wrap">
+          <main>
+            {!userAccessToken &&
+              <IntroScreen onSuccess={this.onSuccessfulAuthorization} />}
 
-          {userAccessToken &&
-            <WebPlayback {...webPlaybackSdkProps}>
+            {userAccessToken &&
+              <WebPlayback {...webPlaybackSdkProps}>
 
-              {playerLoaded &&
-                <HomeScreen token={userAccessToken}/>
-              }
-            </WebPlayback>
-          }
-        </main>        
-      </div>
+                {playerLoaded &&
+                  <Route 
+                  path='/home'
+                  component={() => <HomeScreen token={userAccessToken}/>}/> &&
+                  <HomeScreen token={userAccessToken} />
+                }
+              </WebPlayback>
+            }
+          </main>
+        </div>
+      </Router>
     );
   }
 };

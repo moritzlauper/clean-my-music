@@ -1,7 +1,7 @@
 import Spotify from 'spotify-web-api-js';
 
 const spotifyApi = new Spotify();
-const apiUri = 'https://cleanmymusic.herokuapp.com/';
+const apiUri = 'https://cleanmymusic-backend.herokuapp.com/';
 
 const noData = [{ type: "noData" }];
 let user_name = null;
@@ -21,8 +21,8 @@ export default class SpotifyUtils {
         .then((data) => {
             let active = data.is_playing === true ? true : false;
             console.log(active);
-            spotifyApi.transferMyPlayback([device_id], {play : active}); 
-        });
+            spotifyApi.transferMyPlayback([device_id], {play : active})
+          });
     }
 
     async rateTrack(position, duration, trackId, userId) {
