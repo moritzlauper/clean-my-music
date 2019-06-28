@@ -1,7 +1,7 @@
 .style {
     font-family: "Courier New", Courier;
     text-align: center;
-    font-size: medium;
+    font-size: larger;
     margin-bottom: 10px;
 }
 
@@ -40,7 +40,7 @@ h4{
 .noData {
     font-family: "Courier New", Courier;
     text-align: center;
-    font-size: small;
+    font-size: medium;
     margin-bottom: 10px;
 }
 .left-center {
@@ -54,7 +54,7 @@ h4{
 }
 .background-btn {
     font-family: "Courier New", Courier;
-    font-size: xx-small;
+    font-size: small;
     color: rgba(158, 157, 157, 0.644);
 }
   body {
