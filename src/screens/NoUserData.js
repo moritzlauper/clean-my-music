@@ -21,12 +21,10 @@ export default class NoUserDataScreen extends Component {
             <div className="left-center">
               <p>1. Open your Spotify app</p>
               <p>2. Go to available devices <img src={availableDevices} alt=""></img></p>
-              <p>3. Select "CleanMyMusic"</p>
+              <p>3. Select "CleanMyMusic" (should already be selected)</p>
               <p>4. Start streaming your music</p>
             </div>
           </div>
-          <br />
-          <p>Each Song has to be listened at least two times, to be rated.</p>
           <br />
           <h3>Usefull features for you:</h3>
           <br />

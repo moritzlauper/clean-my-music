@@ -135,10 +135,6 @@ export default class SpotifyUtils {
     }
 
     calculate(playlists, scores) {
-        scores = scores.filter((element) => {
-            return element.skippedCount >= 2;
-        });
-
         if (scores.length === 0) {
             return noData;
         }
