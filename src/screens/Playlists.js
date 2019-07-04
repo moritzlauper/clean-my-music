@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import './Style.css';
+import SpotifyUtils from '../Spotify/Utils';
+
+const utils = new SpotifyUtils();
 
 export default class PlaylistsScreen extends Component{
 
@@ -8,11 +11,17 @@ export default class PlaylistsScreen extends Component{
         return b.tracks.length - a.tracks.length;
       });
     }
+    
+  selectPlayer(){
+    utils.setPlayer();
+    document.getElementById("select").style.display = "none";
+  }
 
     render(){
         return(
             <div>
             <div className="style">
+            <p id="select" style={{cursor:'pointer'}} onClick={() => {this.selectPlayer()}}><u>SELECT DEVICE</u></p>
               <h1 className="playlist">Playlists</h1>
               <h3 className="refresh" style={{cursor:'pointer'}} onClick={() => { this.props.loading(false, null)}}>Refresh</h3>
             </div>

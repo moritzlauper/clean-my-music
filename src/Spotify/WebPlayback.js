@@ -124,7 +124,6 @@ export default class WebPlayback extends Component {
     });
 
     this.webPlaybackInstance.on("ready", data => {
-      utils.setPlayer(data.device_id);
       this.props.onPlayerWaitingForDevice(data);
     });
 

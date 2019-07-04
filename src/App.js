@@ -8,7 +8,7 @@ import IntroScreen from './screens/Intro.js';
 import HomeScreen from './screens/Home.js';
 import { anim } from './AnimatedBackground.js';
 
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 window.onSpotifyWebPlaybackSDKReady = () => { };
 

@@ -25,12 +25,12 @@ export default class HomeScreen extends Component {
     noData: false,
 
     //background
-    isAnimated: true,
-    text: 'freeze background'
+    isAnimated: false,
+    text: 'animate background'
   }
 
   componentDidMount(){
-    document.body.style.backgroundImage = `url(${GIF})`;
+    this.toggleBackground();
   }
 
   toggleBackground(){

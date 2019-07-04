@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import './Style.css';
-import availableDevices from '../assets/available_devices.png';
+import SpotifyUtils from '../Spotify/Utils';
+
+const utils = new SpotifyUtils();
 
 export default class NoUserDataScreen extends Component {
 
-  sortPlayists() {
-    return this.props.data.sort((a, b) => {
-      return b.tracks.length - a.tracks.length;
-    });
+  selectPlayer(){
+    utils.setPlayer();
+    document.getElementById("select").style.display = "none";
   }
 
   render() {
@@ -19,10 +20,7 @@ export default class NoUserDataScreen extends Component {
           <p>In order to track your favorite and most unliked songs/playlists, you should listen to more music using the app.</p>
           <div className="center">
             <div className="left-center">
-              <p>1. Open your Spotify app</p>
-              <p>2. Go to available devices <img src={availableDevices} alt=""></img></p>
-              <p>3. Select "CleanMyMusic" (should already be selected)</p>
-              <p>4. Start streaming your music</p>
+              <p id="select" onClick={() => {this.selectDevice()}}><u>SELECT DEVICE</u></p>
             </div>
           </div>
           <br />

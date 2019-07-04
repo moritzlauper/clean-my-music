@@ -16,13 +16,21 @@ export default class SpotifyUtils {
         });
     }
 
-    async setPlayer(device_id){
-        spotifyApi.getMyCurrentPlaybackState()
+    async setPlayer() {
+        spotifyApi.getMyDevices()
+            .then(data => {
+                let device = data.devices.find(element => element.name === "CleanMyMusic");
+                spotifyApi.getMyCurrentPlaybackState()
+                    .then((data) => {
+                        let active = data.is_playing === true ? true : false;
+                        spotifyApi.transferMyPlayback([device.id], { play: active })
+                    });
+            });
+        /*spotifyApi.getMyCurrentPlaybackState()
         .then((data) => {
             let active = data.is_playing === true ? true : false;
-            console.log(active);
             spotifyApi.transferMyPlayback([device_id], {play : active})
-          });
+          });*/
     }
 
     async rateTrack(position, duration, trackId, userId) {
