@@ -16,6 +16,13 @@ export default class SpotifyUtils {
         });
     }
 
+    async checkState(){
+        return spotifyApi.getMyCurrentPlaybackState()
+        .then((data) => {
+            return data.device.name === "CleanMyMusic";
+        });
+    }
+
     async setPlayer() {
         spotifyApi.getMyDevices()
             .then(data => {
@@ -25,12 +32,7 @@ export default class SpotifyUtils {
                         let active = data.is_playing === true ? true : false;
                         spotifyApi.transferMyPlayback([device.id], { play: active })
                     });
-            });
-        /*spotifyApi.getMyCurrentPlaybackState()
-        .then((data) => {
-            let active = data.is_playing === true ? true : false;
-            spotifyApi.transferMyPlayback([device_id], {play : active})
-          });*/
+            }); 
     }
 
     async rateTrack(position, duration, trackId, userId) {
