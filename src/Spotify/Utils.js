@@ -50,7 +50,7 @@ export default class SpotifyUtils {
                             if (typeof cleanedTracksPlaylist === 'undefined') {
                                 spotifyApi.createPlaylist(id, {
                                     name: 'Cleaned Music - Your Top Tracks',
-                                    description: 'Your current 20 favorite tracks -Brought to you by Moritz Lauper.'
+                                    description: 'Your current 20 favorite tracks. They will be updated consistently. -Brought to you by Moritz Lauper.'
                                 }).then((res) => {
                                     spotifyApi.addTracksToPlaylist(res.id, topTracks.map(t => "spotify:track:" + t.id_track));
                                 });
@@ -70,7 +70,7 @@ export default class SpotifyUtils {
 
     getTopTracks(list) {
         let sorted = list.sort((a, b) => {
-            return (b.score + (b.skippedCount * 2)) - (a.score + (a.skippedCount * 2));
+            return (b.score + ((b.skippedCount) + (b.notSkippedCount * 3))) - (a.score + ((a.skippedCount) + (a.notSkippedCount * 3)));
         });
         sorted = sorted.filter((val) => { return val.id_track !== "average" });
         if (sorted.length >= 20) {
