@@ -30,7 +30,7 @@ export default class SpotifyUtils {
                 spotifyApi.getMyCurrentPlaybackState()
                     .then((data) => {
                         let active = data.is_playing === true ? true : false;
-                        spotifyApi.transferMyPlayback([device.id], { play: active })
+                        spotifyApi.transferMyPlayback([device.id], { play: active});
                     });
             }); 
     }

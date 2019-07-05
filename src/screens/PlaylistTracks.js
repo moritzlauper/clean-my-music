@@ -19,6 +19,10 @@ export default class PlaylistTracksScreen extends Component {
         }
     }
 
+    componentWillMount() {
+        scroll(0, 0);
+      }
+
     render() {
         return (
             <Fragment>

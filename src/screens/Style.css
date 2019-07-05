@@ -63,7 +63,7 @@ h4{
     background-blend-mode: overlay;
     background-repeat: no-repeat;
     background-position: center;
-    background-size: auto;
+    background-size: cover;
 } 
 .pimg {
     width: 45%;

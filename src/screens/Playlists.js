@@ -25,7 +25,8 @@ export default class PlaylistsScreen extends Component {
     document.getElementById("select").style.display = "none";
   }
 
-  componentDidMount() {
+  componentWillMount() {
+    scroll(0, 0);
     this.checkPlayer();
   }
 
