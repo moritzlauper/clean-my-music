@@ -16,7 +16,7 @@
     "spotify-web-api-js": "^1.2.0"
   },
   "devDependencies": {
-    "http-server": "^0.11.1",
+    "http-server": "^0.11.2",
     "react-scripts": "0.9.5"
   },
   "scripts": {
